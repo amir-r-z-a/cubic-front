@@ -1,0 +1,37 @@
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'poro';
+    src: url('/fonts/Rhinos-Pero.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'IBMbold';
+    src: url('/fonts/IBMPlexMono-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMMedium';
+    src: url('/fonts/IBMPlexMono-Medium.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSans';
+    src: url('/fonts/IBMPlexSans-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
