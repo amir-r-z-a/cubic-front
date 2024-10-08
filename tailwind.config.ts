@@ -24,6 +24,9 @@ const config: Config = {
           100: '#14161B',
           110: '#151619',
         },
+        dark:{
+          100: '#16171b'
+        }
 
       },
       boxShadow: {
