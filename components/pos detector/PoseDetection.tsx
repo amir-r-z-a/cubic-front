@@ -9,7 +9,12 @@ import {
 
 type RunningMode = 'IMAGE' | 'VIDEO';
 
-export const PoseDetection: React.FC = () => {
+type PoseDetectionProps = {
+  onPoseDetected: (result: any) => void; // Add this prop to send the result to the parent
+};
+
+
+export const PoseDetection: React.FC<PoseDetectionProps> =  ({ onPoseDetected }) => {
   const [poseLandmarker, setPoseLandmarker] = useState<PoseLandmarker | null>(null);
   const [runningMode, setRunningMode] = useState<RunningMode>('IMAGE');
   const [webcamRunning, setWebcamRunning] = useState<boolean>(true);
@@ -61,7 +66,7 @@ export const PoseDetection: React.FC = () => {
   const disableCam = () => {
     const video = videoRef.current!;
     const stream = video.srcObject as MediaStream;
-    
+
     // Stop all tracks to disable webcam
     stream.getTracks().forEach((track) => {
       track.stop();
@@ -87,7 +92,7 @@ export const PoseDetection: React.FC = () => {
 
     const videoWidth = video.videoWidth;
     const videoHeight = video.videoHeight;
-  
+
     // Update canvas size to match video
     canvasElement.width = videoWidth;
     canvasElement.height = videoHeight;
@@ -103,8 +108,11 @@ export const PoseDetection: React.FC = () => {
       if (lastVideoTime !== video.currentTime) {
         lastVideoTime = video.currentTime;
         poseLandmarker?.detectForVideo(video, startTimeMs, (result) => {
+          // console.log(result.landmarks);
+          onPoseDetected(result.worldLandmarks);
+
           canvasCtx.save();
-          canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height); // Clear the canvas before drawing
+          canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height); 
           for (const landmark of result.landmarks) {
             drawingUtils.drawLandmarks(landmark, {
               color: 'red',
@@ -129,40 +137,42 @@ export const PoseDetection: React.FC = () => {
 
   return (
     <div>
-      <div id="liveView" className="videoView">
-        <button
-          id="webcamButton"
-          ref={enableWebcamButtonRef}
-          // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-20 px-20 rounded"
-          onClick={enableCam}
-        >
-          <span className="mdc-button__ripple"></span>
-          <span className="mdc-button__label">ENABLE WEBCAM</span>
-        </button>
-        <button
-          id="disableWebcamButton"
-          ref={disableWebcamButtonRef}
-          className="mdc-button mdc-button--raised"
-          onClick={disableCam}
-          style={{ display: 'none' }}
-        >
-          <span className="mdc-button__ripple"></span>
-          <span className="mdc-button__label">DISABLE WEBCAM</span>
-        </button>
-        <div style={{ position: 'relative' }}>
-          <video
-            ref={videoRef}
-            style={{position: 'absolute'}}
-            autoPlay
-            playsInline
-          ></video>
-          <canvas
-            ref={canvasRef}
-            className="output_canvas"
-            style={{ position: 'absolute'}}
-          ></canvas>
-        </div>
+      <button
+        id="webcamButton"
+        ref={enableWebcamButtonRef}
+        // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-20 px-20 rounded"
+        onClick={enableCam}
+      >
+        <span className="mdc-button__ripple"></span>
+        <span className="mdc-button__label ">ENABLE WEBCAM</span>
+      </button>
+      <button
+        id="disableWebcamButton"
+        ref={disableWebcamButtonRef}
+        className="mdc-button mdc-button--raised"
+        onClick={disableCam}
+        style={{ display: 'none' }}
+      >
+        <span className="mdc-button__ripple"></span>
+        <span className="mdc-button__label">DISABLE WEBCAM</span>
+      </button>
+      
+      <div style={{}}>
+        <video
+          ref={videoRef}
+          style={{ position: 'absolute', borderRadius: '10px' }}
+          width={640}
+          height={480}
+          autoPlay
+        ></video>
+        <canvas
+          ref={canvasRef}
+          style={{ position: 'absolute'}}
+          width={640}
+          height={480}
+        ></canvas>
       </div>
+
     </div>
   );
 };
