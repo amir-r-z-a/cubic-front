@@ -30,7 +30,7 @@ export const PoseDetection: React.FC<PoseDetectionProps> =  ({ onPoseDetected })
       );
       const poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
         baseOptions: {
-          modelAssetPath: `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task`,
+          modelAssetPath: `http://188.121.96.169/poselandmarker.task`,
           delegate: "GPU"
         },
         runningMode: runningMode,
