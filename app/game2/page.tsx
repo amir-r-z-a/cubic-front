@@ -1,27 +1,37 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { HandDetector } from "@/components/hand_detector";
 
 export default function Page() {
-  const [poseData, setPoseData] = useState<any>(null);
+  const [HandData, setHandData] = useState<any>(null);
 
-  // Handle pose data updates
+  // Handle Hand data updates
   const HandleHandDetected = (result: any) => {
-    // setPoseData(result);
+    // setHandData(result);
   };
 
   return (
     <div className="bg-dark-100 h-screen items-center">
 
-      <div className="relative flex justify-stretch items-center ">
+    <div className="relative ">
 
-        <div className="text-white mt-[14%] ml-9 w-[680px]">
-            <HandDetector onHandDetected={HandleHandDetected} />
+      <div className="flex justify-between">
+        <div className="text-white w-[320px] p-12">
+          <HandDetector onHandDetected={HandleHandDetected} />
         </div>
+        <h1 className="text-white mt-[10%] -mr-[25%] text-5xl">Game1</h1>
+        <Image src={"/images/fig1.png"} width={700} height={100} alt="linkedin" />
 
+
+      </div>
+
+      <div className=" ml-[25%] mt-[5%]">
+        {/* <Game id="game" poseData={poseData} /> */}
       </div>
 
     </div>
 
+  </div>
   );
 }
