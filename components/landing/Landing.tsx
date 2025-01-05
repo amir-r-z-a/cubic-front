@@ -10,6 +10,7 @@ import axios from "axios";
 
 export const Landing = () => {
     const [username, setUsername] = useState<string | null>(null);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
 
     useEffect(() => {
         // Check for existing token on component mount
@@ -56,14 +57,31 @@ export const Landing = () => {
                         <div className="flex space-x-20">
                             <a href="#" className="text-white hover:text-orange-400 transition-colors duration-200 font-bold font-[IBMMedium]">Games</a>
                             {username ? (
-                                <div className="flex items-center space-x-4">
-                                    <span className="text-white font-bold font-[IBMMedium]">{username}</span>
+                                <div className="relative group">
                                     <button 
-                                        onClick={handleSignOut}
-                                        className="text-orange-400 hover:text-orange-300 transition-colors duration-200 font-bold font-[IBMMedium]"
+                                        className="flex items-center space-x-2 text-white hover:text-orange-400 transition-colors duration-200 font-bold font-[IBMMedium] rounded-full bg-gradient-to-r from-red-700 to-orange-400 p-[1px]"
                                     >
-                                        Sign Out
+                                        <div className="flex items-center space-x-2 px-4 py-1 bg-gray-800 rounded-full hover:bg-gray-700">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                            <span>Profile</span>
+                                        </div>
                                     </button>
+                                    
+                                    <div className="hidden group-hover:block absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-[rgb(53,53,53)] border border-orange-400">
+                                        <div className="py-3">
+                                            <div className="px-6 py-3 text-base text-gray-300 border-b border-gray-600">
+                                                {username}
+                                            </div>
+                                            <button
+                                                onClick={handleSignOut}
+                                                className="w-full text-left px-6 py-3 text-base text-orange-400 hover:bg-gray-700 transition-colors duration-200"
+                                            >
+                                                Sign Out
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             ) : (
                                 <a href="#SignIn" className="text-white hover:text-orange-400 transition-colors duration-200 font-bold font-[IBMMedium]">SignIn / SignUp</a>
