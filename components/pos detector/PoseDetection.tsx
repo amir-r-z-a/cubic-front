@@ -30,7 +30,7 @@ export const PoseDetection: React.FC<PoseDetectionProps> =  ({ onPoseDetected })
       );
       const poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
         baseOptions: {
-          modelAssetPath: `http://167.71.1.236/poselandmarker.task`,
+          modelAssetPath: `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task`,
           delegate: "GPU"
         },
         runningMode: runningMode,
@@ -94,8 +94,8 @@ export const PoseDetection: React.FC<PoseDetectionProps> =  ({ onPoseDetected })
     const videoHeight = video.videoHeight;
 
     // Update canvas size to match video
-    canvasElement.width = videoWidth;
-    canvasElement.height = videoHeight;
+    canvasElement.width = 320;
+    canvasElement.height = 240;
 
     if (runningMode === 'IMAGE') {
       setRunningMode('VIDEO');
@@ -116,11 +116,11 @@ export const PoseDetection: React.FC<PoseDetectionProps> =  ({ onPoseDetected })
           for (const landmark of result.landmarks) {
             drawingUtils.drawLandmarks(landmark, {
               color: 'red',
-              radius: (data) => data.from?.z ? DrawingUtils.lerp(data.from.z, -0.15, 0.1, 5, 1) : 0
+              radius: (data) => data.from?.z ? DrawingUtils.lerp(data.from.z, -0.15, 0.1, 3, 1) : 0
             });
             drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS, {
               color: 'blue',
-              lineWidth: 5
+              lineWidth: 3
             });
           }
           canvasCtx.restore();
@@ -161,15 +161,15 @@ export const PoseDetection: React.FC<PoseDetectionProps> =  ({ onPoseDetected })
         <video
           ref={videoRef}
           style={{ position: 'absolute', borderRadius: '10px' }}
-          width={640}
-          height={480}
+          width={320}
+          height={240}
           autoPlay
         ></video>
         <canvas
           ref={canvasRef}
           style={{ position: 'absolute'}}
-          width={640}
-          height={480}
+          width={320}
+          height={240}
         ></canvas>
       </div>
 

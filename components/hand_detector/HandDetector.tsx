@@ -108,8 +108,8 @@ export const HandDetector: React.FC<HandDetectionProps> = ({ onHandDetected }) =
     const videoHeight = video.videoHeight;
   
     // Update canvas size to match video
-    canvasElement.width = videoWidth;
-    canvasElement.height = videoHeight;
+    canvasElement.width = 320;
+    canvasElement.height = 240;
   
     if (runningMode === 'IMAGE') {
       setRunningMode('VIDEO');
@@ -197,15 +197,15 @@ export const HandDetector: React.FC<HandDetectionProps> = ({ onHandDetected }) =
         <video
           ref={videoRef}
           style={{ position: 'absolute', borderRadius: '10px' }}
-          width={640}
-          height={480}
+          width={320}
+          height={240}
           autoPlay
         ></video>
         <canvas
           ref={canvasRef}
           style={{ position: 'absolute' }}
-          width={640}
-          height={480}
+          width={320}
+          height={240}
         ></canvas>
       </div>
 
