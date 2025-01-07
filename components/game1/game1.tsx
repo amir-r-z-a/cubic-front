@@ -43,9 +43,14 @@ export const Game1: React.FC<GameProps> = ({ id, poseData }) => {
             .filter((score: any) => score.game_type === 1)
             .reduce((max: number, score: any) => Math.max(max, score.score), 0);
 
+          // const userData: UserGameData = {
+          //   token: token || "",
+          //   high_score: highScore
+          // };
+
           const userData: UserGameData = {
-            token: token || "",
-            high_score: highScore
+            token: "jashsjkdahfkjfkladjf;a",
+            high_score: 212
           };
 
           // Send user data to Unity
