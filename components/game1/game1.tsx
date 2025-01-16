@@ -8,69 +8,67 @@ interface GameProps {
   poseData: any;
 }
 
-interface UserGameData {
-  token: string;
-  high_score: number;
+interface Score {
+  id: number;
+  user_id: number;
+  game_type: number;
+  score: number;
+  created_at: string;
 }
 
 export const Game1: React.FC<GameProps> = ({ id, poseData }) => {
-  const [userDataSent, setUserDataSent] = useState(false);
-  
-  const { unityProvider, sendMessage, isLoaded } = useUnityContext({
+  const [highScore, setHighScore] = useState<number>(0);
+  const { unityProvider, sendMessage } = useUnityContext({
     loaderUrl: "build/server-test-build.loader.js",
     dataUrl: "build/server-test-build.data",
     frameworkUrl: "build/server-test-build.framework.js",
     codeUrl: "build/server-test-build.wasm",
   });
 
-  // Send user data when Unity is loaded
+  // Add a ref to track if player data was sent
+  const playerDataSent = React.useRef(false);
+
+  // Fetch scores and calculate high score
   useEffect(() => {
-    const sendUserData = async () => {
-      if (isLoaded && !userDataSent) {
-        try {
-          // Get token from localStorage
-          const token = localStorage.getItem('token');
-          
-          // Fetch high score from API
-          const response = await axios.get('http://localhost:8000/api/scores/my-scores', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          });
+    const fetchScores = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
 
-          // Find highest score for game type 1
-          const highScore = response.data.scores
-            .filter((score: any) => score.game_type === 1)
-            .reduce((max: number, score: any) => Math.max(max, score.score), 0);
+        const response = await axios.get('http://localhost:8000/api/scores/my-scores', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
-          // const userData: UserGameData = {
-          //   token: token || "",
-          //   high_score: highScore
-          // };
-
-          const userData: UserGameData = {
-            token: "jashsjkdahfkjfkladjf;a",
-            high_score: 212
-          };
-
-          // Send user data to Unity
-          sendMessage("GameManager", "set_player_data", JSON.stringify(userData));
-          setUserDataSent(true);
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
+        // Filter scores for game type 1 and find the highest score
+        const game1Scores = response.data.scores.filter((score: Score) => score.game_type === 1);
+        const maxScore = Math.max(...game1Scores.map((score: Score) => score.score), 0);
+        setHighScore(maxScore);
+      } catch (error) {
+        console.error('Failed to fetch scores:', error);
       }
     };
 
-    sendUserData();
-  }, [isLoaded, sendMessage, userDataSent]);
+    fetchScores();
+  }, []);
 
-  // Send pose data only after user data has been sent
+  // Pose data updates
   useEffect(() => {
-    if (poseData && userDataSent) {
+    if (poseData) {
       sendMessage("GameManager", "update_server_debug_data", JSON.stringify(poseData));
+      
+      // Only send player data once
+      if (!playerDataSent.current) {
+        const token = localStorage.getItem('token') || '';
+        sendMessage("GameManager", "set_player_data", JSON.stringify({
+          token: token,
+          high_score: highScore
+        }));
+        playerDataSent.current = true;
+      }
     }
-  }, [poseData, sendMessage, userDataSent]);
+  }, [poseData, highScore]);
 
   return (
     <div>
