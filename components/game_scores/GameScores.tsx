@@ -40,6 +40,10 @@ const GAME_NAMES = {
 
 export default function GameScores({ scores }: GameScoresProps) {
   const getGameScores = (gameType: number) => {
+    if (!scores || scores.length === 0) {
+      return [];
+    }
+    
     return scores
       .filter(score => score.game_type === gameType)
       .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
@@ -48,6 +52,26 @@ export default function GameScores({ scores }: GameScoresProps) {
 
   const createChartData = (gameType: number) => {
     const gameScores = getGameScores(gameType);
+    
+    // If no scores, return empty data structure
+    if (gameScores.length === 0) {
+      return {
+        labels: [],
+        datasets: [
+          {
+            label: GAME_NAMES[gameType as keyof typeof GAME_NAMES],
+            data: [],
+            borderColor: gameType === 1 ? 'rgb(255, 99, 132)' : 
+                        gameType === 2 ? 'rgb(54, 162, 235)' : 
+                        'rgb(75, 192, 192)',
+            backgroundColor: gameType === 1 ? 'rgba(255, 99, 132, 0.5)' : 
+                           gameType === 2 ? 'rgba(54, 162, 235, 0.5)' : 
+                           'rgba(75, 192, 192, 0.5)',
+            tension: 0.3,
+          },
+        ],
+      };
+    }
     
     return {
       labels: gameScores.map((_, index) => `Game ${index + 1}`),
