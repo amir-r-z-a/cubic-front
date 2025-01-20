@@ -34,7 +34,7 @@ export const HandDetector: React.FC<HandDetectionProps> = ({ onHandDetected }) =
           delegate: "GPU"
         },
         runningMode: runningMode,
-        numHands: 2
+        numHands: 1
       });
       sethandLandmarker(handLandmarker);
     };
@@ -128,7 +128,7 @@ export const HandDetector: React.FC<HandDetectionProps> = ({ onHandDetected }) =
             const result = await handLandmarker?.detectForVideo(video, startTimeMs);
             if (result) {
 
-              console.log("Hand detected:", result);
+              // console.log("Hand detected:", result);
 
               onHandDetected(result.worldLandmarks);
   
