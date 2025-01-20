@@ -16,14 +16,16 @@ interface Score {
   created_at: string;
 }
 
-export const Game1: React.FC<GameProps> = ({ id, poseData }) => {
+export const Game3: React.FC<GameProps> = ({ id, poseData }) => {
   const [highScore, setHighScore] = useState<number>(0);
   const { unityProvider, sendMessage } = useUnityContext({
-    loaderUrl: "build/game1/server-test-build.loader.js",
-    dataUrl: "build/game1/server-test-build.data",
-    frameworkUrl: "build/game1/server-test-build.framework.js",
-    codeUrl: "build/game1/server-test-build.wasm",
+    loaderUrl: "build/game3/Thumb-Exercise.loader.js",
+    dataUrl: "build/game3/Thumb-Exercise.data",
+    frameworkUrl: "build/game3/Thumb-Exercise.framework.js",
+    codeUrl: "build/game3/Thumb-Exercise.wasm",
   });
+
+  // console.log(poseData);
 
   // Add a ref to track if player data was sent
   const playerDataSent = React.useRef(false);
@@ -42,8 +44,10 @@ export const Game1: React.FC<GameProps> = ({ id, poseData }) => {
         });
 
         // Filter scores for game type 1 and find the highest score
-        const game1Scores = response.data.scores.filter((score: Score) => score.game_type === 1);
-        const maxScore = Math.max(...game1Scores.map((score: Score) => score.score), 0);
+        const game3Scores = response.data.scores.filter((score: Score) => score.game_type === 3);
+        const maxScore = Math.max(...game3Scores.map((score: Score) => score.score), 0);
+        console.log("************");
+        console.log(maxScore);
         setHighScore(maxScore);
       } catch (error) {
         console.error('Failed to fetch scores:', error);
@@ -56,6 +60,9 @@ export const Game1: React.FC<GameProps> = ({ id, poseData }) => {
   // Pose data updates
   useEffect(() => {
     if (poseData) {
+      console.log("-=------=---==-=-=--==-");
+      console.log(poseData);
+      console.log("-=------=---==-=-=--==-");
       sendMessage("GameManager", "update_server_debug_data", JSON.stringify(poseData));
       
       // Only send player data once
