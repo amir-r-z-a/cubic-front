@@ -60,9 +60,6 @@ export const Game3: React.FC<GameProps> = ({ id, poseData }) => {
   // Pose data updates
   useEffect(() => {
     if (poseData) {
-      console.log("-=------=---==-=-=--==-");
-      console.log(poseData);
-      console.log("-=------=---==-=-=--==-");
       sendMessage("GameManager", "update_server_debug_data", JSON.stringify(poseData));
       
       // Only send player data once
