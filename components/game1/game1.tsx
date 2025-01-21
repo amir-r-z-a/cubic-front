@@ -19,10 +19,10 @@ interface Score {
 export const Game1: React.FC<GameProps> = ({ id, poseData }) => {
   const [highScore, setHighScore] = useState<number>(0);
   const { unityProvider, sendMessage } = useUnityContext({
-    loaderUrl: "build/game1/server-test-build.loader.js",
-    dataUrl: "build/game1/server-test-build.data",
-    frameworkUrl: "build/game1/server-test-build.framework.js",
-    codeUrl: "build/game1/server-test-build.wasm",
+    loaderUrl: "build/game1/Shoulder-Stretch.loader.js",
+    dataUrl: "build/game1/Shoulder-Stretch.data",
+    frameworkUrl: "build/game1/Shoulder-Stretch.framework.js",
+    codeUrl: "build/game1/Shoulder-Stretch.wasm",
   });
 
   // Add a ref to track if player data was sent
