@@ -172,7 +172,7 @@ export const Landing = () => {
                     </div>
                 )}
                 {username && (<div id="BodySchema" className="relative flex justify-center h-screen bg-center bg-black-110 bg-cover w-screen">
-                    <div className="mt-8 absolute bottom-[30%] left-[9%] ">
+                    <div className="mt-8 absolute bottom-[21%] left-[9%] ">
                         <svg 
                             className="absolute -top-32 -right-20 w-80 h-48 fill-slate-50 opacity-80"
                             viewBox="0 0 122.88 99.7"
