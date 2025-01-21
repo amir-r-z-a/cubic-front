@@ -27,7 +27,7 @@ export default function Page() {
 
       </div>
 
-      <div className=" ml-[25%] mt-[5%]">
+      <div className=" ml-[25%] mt-[1%]">
         <Game3 id="game" poseData={HandData} />
       </div>
 
