@@ -23,10 +23,10 @@ export const BodySchema = () => {
         {
             id: 'shoulder',
             title: 'Shoulder Games',
-            description: 'Shoulder movement tracking games',
+            description: 'Improve shoulder mobility and flexibility with guided stretching exercises',
             position: 'top-[20%] left-[96%] -translate-x-1/2',
             games: [{
-                name: 'Face Expression Game',
+                name: 'Shoulder Stretch Game',
                 url: '/pregame1'
             }]
         },
