@@ -130,12 +130,17 @@ export const Landing = () => {
                         </div>
                     </nav>
                     <div className="w-1/3 pl-32">
-                        <h1 className="text-white  font-bold text-6xl mt-40  font-[IBMbold]">Creating A <br /> New Future </h1>
-                        <p className="text-white font-[IBMMedium] text-1xl mt-6  ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam facere numquam rerum laborum, ut ducimus temporibus nulla qui, eveniet veniam architecto doloribus neque, perspiciatis repellendus ad quam. Vel, eaque provident?</p>
+                        <h1 className="text-white font-bold text-6xl mt-40 font-[IBMbold]">Creating A <br /> New Future </h1>
+                        <p className="text-white font-[IBMMedium] text-1xl mt-6">
+                            Welcome to Cube Studio, where innovation meets creativity. Our mission is to revolutionize 
+                            the way you interact with technology through immersive and engaging experiences. Join us 
+                            on a journey to explore new dimensions of gaming and digital interaction, where your 
+                            imagination is the only limit.
+                        </p>
                         <div className="relative mt-11 p-1 w-40 rounded-full">
                             <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full blur-xl opacity-75"></div>
                             <div className="relative bg-gradient-to-r from-red-700 to-orange-400 p-1 w-full rounded-full">
-                                <div className="text-white py-3 flex h-full w-full items-center justify-center bg-gray-800 rounded-full  hover:text-orange-400 transition-colors duration-200 font-bold font-[IBMMedium]">
+                                <div className="text-white py-3 flex h-full w-full items-center justify-center bg-gray-800 rounded-full hover:text-orange-400 transition-colors duration-200 font-bold font-[IBMMedium]">
                                     <a href="#">Get Started</a>
                                 </div>
                             </div>
@@ -150,11 +155,16 @@ export const Landing = () => {
                         />
                     </div>
                 </div>
-                <div id="aboutUs" className="relative h-screen  bg-center bg-[url('/images/aboutUs.png')] bg-no-repeat bg-cover w-screen">
-                    <h1 className="absolute top-40 left-[660px] text-white  font-bold text-6xl font-[IBMbold]"> about Us </h1>
-                    <p className="absolute bottom-60 left-[660px] text-white font-[IBMMedium] text-1xl w-2/5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam facere numquam rerum laborum, ut ducimus temporibus nulla qui, eveniet veniam architecto doloribus neque, perspiciatis repellendus ad quam. Vel, eaque provident?</p>
-                    <div className="mt-8 absolute top-[19%] right-[9%] rounded-full overflow-hidden ">
-                        
+                <div id="aboutUs" className="relative h-screen bg-center bg-[url('/images/aboutUs.png')] bg-no-repeat bg-cover w-screen">
+                    <h1 className="absolute top-40 left-[660px] text-white font-bold text-6xl font-[IBMbold]">About Us</h1>
+                    <p className="absolute bottom-60 left-[660px] text-white font-[IBMMedium] text-1xl w-2/5">
+                        At Cube Studio, we are pioneering the integration of healthcare and gamification. Our goal is to 
+                        transform traditional health practices into engaging and interactive experiences. By leveraging 
+                        the power of games, we aim to motivate individuals to take charge of their health and well-being 
+                        in a fun and rewarding way. Join us as we redefine the future of healthcare through innovative 
+                        digital solutions.
+                    </p>
+                    <div className="mt-8 absolute top-[19%] right-[9%] rounded-full overflow-hidden">
                         <Image
                             src="/images/hand.webp"
                             alt="Direction Icon"
