@@ -21,10 +21,8 @@ export default function Page() {
           <div className="text-white w-[320px] p-12">
             <PoseDetection onPoseDetected={handlePoseDetected} />
           </div>
-          <h1 className="text-white mt-[10%] -mr-[25%] text-5xl">Game1</h1>
+          <h1 className="text-white mt-[10%] -mr-[25%] text-5xl">Shoulder Stretch Game</h1>
           <Image src={"/images/fig1.png"} width={700} height={100} alt="linkedin" />
-
-
         </div>
 
         <div className=" ml-[25%] mt-[1%]">

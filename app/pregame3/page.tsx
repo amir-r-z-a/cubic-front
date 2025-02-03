@@ -12,20 +12,21 @@ export default function PreGame1() {
       <div className="max-w-4xl w-full px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl text-white font-bold mb-4">Face Expression Game</h1>
-          <p className="text-orange-400 text-xl">Master your facial movements</p>
+          <h1 className="text-5xl text-white font-bold mb-4">Thumb Exercise Game</h1>
+          <p className="text-orange-400 text-xl">Enhance your thumb mobility and strength</p>
         </div>
 
         {/* Main Content */}
         <div className="bg-[rgb(53,53,53)] rounded-lg p-8 shadow-lg">
           {/* Game Preview Image */}
-          <div className="relative h-[300px] mb-8 rounded-lg overflow-hidden">
+          <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
             <Image 
-              src="/images/fig1.png"
+              src="/images/finger.gif"
               fill
-              style={{ objectFit: 'cover' }}
-              alt="Game Preview"
+              style={{ objectFit: 'contain' }}
+              alt="Thumb Exercise Preview"
               className="rounded-lg"
+              priority
             />
           </div>
 
@@ -34,27 +35,30 @@ export default function PreGame1() {
             <section>
               <h2 className="text-2xl font-bold mb-3">About the Game</h2>
               <p className="text-gray-300 leading-relaxed">
-                Face Expression Game helps you improve your facial muscle control through fun and engaging exercises. 
-                Track your facial movements in real-time and complete various challenges.
+                The Thumb Exercise Game is designed to improve thumb flexibility and strength through 
+                engaging movements. This exercise is particularly beneficial for those who experience 
+                thumb stiffness from repetitive motions, such as typing or gaming. Regular practice 
+                can help prevent thumb-related conditions and improve your daily hand functions.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold mb-3">How to Play</h2>
               <ul className="list-disc list-inside text-gray-300 space-y-2">
-                <li>Position yourself in front of the camera</li>
-                <li>Follow the on-screen instructions</li>
-                <li>Mirror the facial expressions shown</li>
-                <li>Score points for accurate movements</li>
+                <li>Position your hand in front of the camera</li>
+                <li>Follow the on-screen thumb movement patterns</li>
+                <li>Perform circular and stretching motions as guided</li>
+                <li>Maintain consistent speed and proper form</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold mb-3">Requirements</h2>
               <ul className="list-disc list-inside text-gray-300 space-y-2">
-                <li>Webcam access</li>
-                <li>Good lighting</li>
-                <li>Clear view of your face</li>
+                <li>Webcam access for hand tracking</li>
+                <li>Well-lit environment for better tracking</li>
+                <li>Clear view of your hand</li>
+                <li>Space for comfortable hand movements</li>
               </ul>
             </section>
           </div>

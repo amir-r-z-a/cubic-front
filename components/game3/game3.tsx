@@ -79,7 +79,7 @@ export const Game3: React.FC<GameProps> = ({ id, poseData }) => {
       <Unity unityProvider={unityProvider} id={id} style={{
         position: "absolute",
         width: "70%",
-        height: "215%",
+        height: "230%",
         borderRadius: "10px",
       }} />
     </div>
